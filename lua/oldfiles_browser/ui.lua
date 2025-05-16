@@ -137,7 +137,9 @@ function M.close_window()
 end
 
 function M.open_oldfiles_browser()
-    M.open_search_window(get_existing_oldfiles())
+    get_existing_oldfiles()
+    M.update_results()
+    --M.open_search_window(get_existing_oldfiles())
 end
 
 return M
