@@ -27,7 +27,7 @@ function M.open_search_window(items, on_select)
     local width, height = 40, 3
     -- local row, col = math.floor((vim.o.lines - height) / 2 - 1), math.floor((vim.o.columns - width) / 2)
     -- position the input window horizontally aligned with results window
-    local col = results_win_config.col or math.floor((vim.o.columns - width) / 2)
+    local col = math.floor((vim.o.columns - width) / 2)
 
     -- position the input window just above the results window
     local row = (results_win_config.row or math.floor((vim.o.lines - height) / 2)) - height - 1
