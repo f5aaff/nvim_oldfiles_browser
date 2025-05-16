@@ -1,5 +1,6 @@
 Overview:
-    simple browser window for the oldfiles command. scrollable and searchable.
+
+simple browser window for the oldfiles command. scrollable and searchable.
 
 📦 Installation (with packer.nvim)
 To install this plugin using packer.nvim:
