@@ -40,10 +40,10 @@ vim.keymap.set('n', '<leader>of', '<cmd>OldfilesBrowser<CR>', { desc = 'Open old
     📁 Opens files directly from the list
 
 📁 File Structure
-
+```
 themeinator/
 ├── lua/
 │   └── themeinator/
 │       ├── init.lua
 │       └── ui.lua
-
+```
