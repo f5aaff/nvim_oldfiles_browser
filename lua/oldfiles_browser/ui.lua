@@ -6,6 +6,8 @@ local buf, win_id
 local input_buf, input_win_id, result_buf, result_win_id
 local selected_index = 1 -- Keeps track of the currently selected item
 
+local results_win_config = {}
+
 -- Helper to get only existing oldfiles
 local function get_existing_oldfiles()
     local files = {}
@@ -23,8 +25,13 @@ function M.open_search_window(items, on_select)
     input_buf = vim.api.nvim_create_buf(false, true)
 
     local width, height = 40, 3
-    local row, col = math.floor((vim.o.lines - height) / 2 - 1), math.floor((vim.o.columns - width) / 2)
+    -- local row, col = math.floor((vim.o.lines - height) / 2 - 1), math.floor((vim.o.columns - width) / 2)
+    -- position the input window horizontally aligned with results window
+    local col = results_win_config.col or math.floor((vim.o.columns - width) / 2)
 
+    -- position the input window just above the results window
+    local row = (results_win_config.row or math.floor((vim.o.lines - height) / 2)) - height - 1
+if row < 0 then row = 0 end  -- ensure it doesn't go off-screen
     input_win_id = vim.api.nvim_open_win(input_buf, true, {
         style = "minimal",
         relative = "editor",
@@ -38,7 +45,7 @@ function M.open_search_window(items, on_select)
     vim.api.nvim_buf_set_option(input_buf, "bufhidden", "wipe")
     vim.api.nvim_buf_set_option(input_buf, "modifiable", true)
     vim.api.nvim_buf_set_lines(input_buf, 0, -1, false, { "" })
-
+    M.update_results()
     vim.api.nvim_create_autocmd("TextChangedI", {
         buffer = input_buf,
         callback = function() M.update_results() end
@@ -97,7 +104,7 @@ function M.show_results(filtered_items)
         col = col,
         border = "rounded",
     })
-
+    results_win_config = { row = row, col = col, width = win_width, height = win_height }
     vim.api.nvim_buf_set_lines(result_buf, 0, -1, false, filtered_items)
     M.highlight_selected_item()
 end
