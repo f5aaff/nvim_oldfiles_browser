@@ -112,6 +112,9 @@ end
 function M.highlight_selected_item()
     vim.api.nvim_buf_clear_namespace(result_buf, -1, 0, -1)
     vim.api.nvim_buf_add_highlight(result_buf, -1, "Visual", selected_index - 1, 0, -1)
+    if result_win_id and vim.api.nvim_win_is_valid(result_win_id) then
+        vim.api.nvim_win_set_cursor(result_win_id, { selected_index, 0 })
+     end
 end
 
 function M.move_selection(direction)
