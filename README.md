@@ -1,22 +1,16 @@
-📦 Installation (with packer.nvim)
+Overview:
+    simple browser window for the oldfiles command. scrollable and searchable.
 
+📦 Installation (with packer.nvim)
 To install this plugin using packer.nvim:
 ```lua
-use({
-  'yourusername/themeinator',  -- replace with your GitHub repo
-  config = function()
-    require('themeinator').setup()
-  end
-})
+use({'f5aaff/nvim_oldfiles_browser'})
 ```
 If you're using lazy-loading, you can trigger on command:
 ```lua
 use({
-  'yourusername/themeinator',
+  'f5aaff/nvim_oldfiles_browser',
   cmd = { 'OldfilesBrowser' },
-  config = function()
-    require('themeinator').setup()
-  end
 })
 ```
 🚀 Usage
@@ -41,9 +35,9 @@ vim.keymap.set('n', '<leader>of', '<cmd>OldfilesBrowser<CR>', { desc = 'Open old
 
 📁 File Structure
 ```
-themeinator/
+oldfiles_browser/
 ├── lua/
-│   └── themeinator/
+│   └── oldfiles_browser/
 │       ├── init.lua
 │       └── ui.lua
 ```

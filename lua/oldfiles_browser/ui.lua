@@ -44,14 +44,14 @@ function M.open_search_window(items, on_select)
         callback = function() M.update_results() end
     })
 
-    vim.api.nvim_buf_set_keymap(input_buf, "i", "<Down>", "<Cmd>lua require('themeinator.ui').move_selection(1)<CR>",
+    vim.api.nvim_buf_set_keymap(input_buf, "i", "<Down>", "<Cmd>lua require('oldfiles_browser.ui').move_selection(1)<CR>",
         { noremap = true, silent = true })
-    vim.api.nvim_buf_set_keymap(input_buf, "i", "<Up>", "<Cmd>lua require('themeinator.ui').move_selection(-1)<CR>",
+    vim.api.nvim_buf_set_keymap(input_buf, "i", "<Up>", "<Cmd>lua require('oldfiles_browser.ui').move_selection(-1)<CR>",
         { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(input_buf, "i", "<CR>",
-        "<Cmd>lua require('themeinator.ui').select_current_item()<CR>",
+        "<Cmd>lua require('oldfiles_browser.ui').select_current_item()<CR>",
         { noremap = true, silent = true })
-    vim.api.nvim_buf_set_keymap(input_buf, "i", "<Esc>", "<Cmd>lua require('themeinator.ui').close_window()<CR>",
+    vim.api.nvim_buf_set_keymap(input_buf, "i", "<Esc>", "<Cmd>lua require('oldfiles_browser.ui').close_window()<CR>",
         { noremap = true, silent = true })
 end
 
