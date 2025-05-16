@@ -23,7 +23,7 @@ end
 function M.open_search_window(items, on_select)
     selected_index = 1
     input_buf = vim.api.nvim_create_buf(false, true)
-
+    M.update_results()
     local width, height = 40, 3
     -- local row, col = math.floor((vim.o.lines - height) / 2 - 1), math.floor((vim.o.columns - width) / 2)
     -- position the input window horizontally aligned with results window
@@ -137,9 +137,7 @@ function M.close_window()
 end
 
 function M.open_oldfiles_browser()
-    get_existing_oldfiles()
-    M.update_results()
-    --M.open_search_window(get_existing_oldfiles())
+    M.open_search_window(get_existing_oldfiles())
 end
 
 return M
