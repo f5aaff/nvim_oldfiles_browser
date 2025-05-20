@@ -58,7 +58,7 @@ if row < 0 then row = 0 end  -- ensure it doesn't go off-screen
     vim.api.nvim_buf_set_keymap(input_buf, "i", "<CR>",
         "<Cmd>lua require('oldfiles_browser.ui').select_current_item()<CR>",
         { noremap = true, silent = true })
-    vim.api.nvim_buf_set_keymap(input_buf, "i", "<Esc>", "<Cmd>lua require('oldfiles_browser.ui').close_window()<CR>",
+    vim.api.nvim_buf_set_keymap(input_buf, "i", "<Esc>", "<Cmd>lua require('oldfiles_browser.ui').force_close()<CR>",
         { noremap = true, silent = true })
 end
 
@@ -129,10 +129,16 @@ function M.select_current_item()
         vim.notify("No file selected.", vim.log.levels.WARN)
         return
     end
-    M.close_window()
+    M.force_close()
     vim.cmd("edit " .. vim.fn.fnameescape(selected))
 end
 
+function M.force_close()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+    vim.schedule(function()
+        M.close_window()
+    end)
+end
 function M.close_window()
     if win_id and vim.api.nvim_win_is_valid(win_id) then vim.api.nvim_win_close(win_id, true) end
     if input_win_id and vim.api.nvim_win_is_valid(input_win_id) then vim.api.nvim_win_close(input_win_id, true) end
