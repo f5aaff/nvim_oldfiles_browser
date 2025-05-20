@@ -129,8 +129,8 @@ function M.select_current_item()
         vim.notify("No file selected.", vim.log.levels.WARN)
         return
     end
-    M.force_close()
     vim.cmd("edit " .. vim.fn.fnameescape(selected))
+    M.force_close()
 end
 
 function M.force_close()
