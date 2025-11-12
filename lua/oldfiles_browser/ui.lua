@@ -24,7 +24,7 @@ function M.open_search_window(items, on_select)
     selected_index = 1
     input_buf = vim.api.nvim_create_buf(false, true)
     M.update_results()
-    local width, height = 40, 3
+    local width, height = 50, 1
     -- local row, col = math.floor((vim.o.lines - height) / 2 - 1), math.floor((vim.o.columns - width) / 2)
     -- position the input window horizontally aligned with results window
     local col = math.floor((vim.o.columns - width) / 2)
@@ -89,8 +89,8 @@ function M.show_results(filtered_items)
 
     local width = vim.o.columns
     local height = vim.o.lines
-    local win_width = math.ceil(width * 0.5)
-    local win_height = math.ceil(height * 0.3)
+    local win_width = math.ceil(width * 0.9)
+    local win_height = math.ceil(height * 0.8)
 
     local row = math.ceil((height - win_height) / 2)
     local col = math.ceil((width - win_width) / 2)
